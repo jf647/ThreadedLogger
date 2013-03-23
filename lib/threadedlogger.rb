@@ -15,6 +15,18 @@ class ThreadedLogger
 
     private_class_method :new
 
+    # create the logging methods
+    LOGLEVELS.each do |k,v|
+        log_method = k.to_sym
+        test_method = "#{k}?".to_sym
+        define_method(log_method) { |msg=nil|
+            enqueue(v, msg)
+        }
+        define_method(test_method) {
+            @log.send(test_method)
+        }
+    end
+
     def ThreadedLogger.instance(*args)
 
         if @@instance.nil?
@@ -39,12 +51,7 @@ class ThreadedLogger
         @log = Logger.new(file, rotation)
 
         # set the min threshold
-        if LOGLEVELS.has_key?(level)
-            @log.level = LOGLEVELS[level]
-        else
-            puts "invalid debug log level #{level}"
-            exit 1
-        end
+        send(:level=, level)
 
         # apply a formatter if one was given
         if ! formatter.nil?
@@ -57,7 +64,15 @@ class ThreadedLogger
         @t = Thread.new { runlogger }
       
     end
-
+    
+    def level=(level)
+        if LOGLEVELS.has_key?(level)
+            @log.level = LOGLEVELS[level]
+        else
+            raise ArgumentError, "invalid log level #{level}"
+        end
+    end
+    
     def shutdown
 
         # stops new messages from being enqueued and tells thread
@@ -77,30 +92,6 @@ class ThreadedLogger
         # put the message on the queue
         @queue.push( [severity, msg] )
 
-    end
-
-    def debug(msg=nil)
-        enqueue(Logger::DEBUG, msg)
-    end
-
-    def debug?
-        return @log.debug?
-    end
-
-    def info(msg=nil)
-        enqueue(Logger::INFO, msg)
-    end
-
-    def warn(msg=nil)
-        enqueue(Logger::WARN, msg)
-    end
-
-    def error(msg=nil)
-        enqueue(Logger::ERROR, msg)
-    end
-
-    def fatal(msg=nil)
-        enqueue(Logger::FATAL, msg)
     end
 
     private

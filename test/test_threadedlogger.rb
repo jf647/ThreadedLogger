@@ -38,8 +38,8 @@ class TestThreadedLogger < Test::Unit::TestCase
     end
     def test_construct_twice
         assert_raises ArgumentError, "cannot call instance a second time with args" do
-            loggera = ThreadedLogger.instance('test/example.log')
-            loggerb = ThreadedLogger.instance('test/example2.log')
+            ThreadedLogger.instance('test/example.log')
+            ThreadedLogger.instance('test/example2.log')
         end
     end
 end
