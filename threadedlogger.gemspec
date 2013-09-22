@@ -4,7 +4,6 @@ require 'threadedlogger'
 Gem::Specification.new do |s|
     s.name          = 'threadedlogger'
     s.version       = ThreadedLogger::VERSION
-    s.date          = '2013-03-23'
     s.summary       = 'Simple logging library with a dedicated logging thread'
     s.homepage      = 'https://github.com/jf647/ThreadedLogger'
     s.authors       = ['James FitzGibbon']

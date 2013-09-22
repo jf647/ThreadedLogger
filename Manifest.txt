@@ -4,8 +4,13 @@ README.txt
 LICENSE.txt
 Rakefile
 lib/threadedlogger.rb
+lib/threadedlogger/core.rb
+lib/threadedlogger/version.rb
+lib/threadedlogger/logger.rb
 test/minitest_helper.rb
 test/test_logging.rb
 test/test_methods.rb
 test/test_threadedlogger.rb
+test/test_shutdown.rb
+test/test_clear.rb
 threadedlogger.gemspec

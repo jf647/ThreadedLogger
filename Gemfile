@@ -7,6 +7,7 @@ end
 group :test do
     gem "simplecov", :require => false
     gem "simplecov-console"
+    gem "simplecov-html"
     gem "minitest", "~> 5"
-    gem "fakefs", :require => 'fakefs/safe'
+    gem "minitest-debugger"
 end
