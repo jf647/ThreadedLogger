@@ -1,5 +1,7 @@
-require 'test/unit'
+require 'minitest_helper'
+require 'minitest/autorun'
 require 'threadedlogger'
+require 'fakefs'
 
 class ThreadedLogger
     def ThreadedLogger.clear
@@ -10,7 +12,7 @@ class ThreadedLogger
     end
 end
 
-class TestMethods < Test::Unit::TestCase
+class TestMethods < Minitest::Test
     def setup
         ThreadedLogger.clear
     end
@@ -20,6 +22,9 @@ class TestMethods < Test::Unit::TestCase
         %w(debug info warn error fatal).each do |level|
             assert_respond_to(logger, level.to_sym, "logger responds to level #{level}")
         end
+        assert_raises(ArgumentError) {
+            logger.level = 'foo'
+        }
     end
     def test_level_predicates
         logger = ThreadedLogger.instance('test/example.log', 'daily', 'info')
@@ -34,5 +39,8 @@ class TestMethods < Test::Unit::TestCase
         assert_equal(false, logger.debug?, 'debug is not on when contstructed at level info')
         logger.level = 'debug'
         assert_equal(true, logger.debug?, 'debug is on after explicitly setting level')
+    end
+    def test_nil_filename
+        assert_raises(ArgumentError) {  ThreadedLogger.instance(nil) }
     end
 end
