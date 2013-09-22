@@ -1,5 +1,10 @@
 # History for ThreadedLogger
 
+## v1.2.0
+
+* Allow multiple loggers to be instantiated as subclasses
+* add ::clear and ::clear_all class methods
+
 ## v1.1.0
 
 * Dynamically generate logging methods
