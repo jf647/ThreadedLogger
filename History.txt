@@ -1,0 +1,11 @@
+# History for ThreadedLogger
+
+## v1.1.0
+
+* Dynamically generate logging methods
+* Enhance test suite
+
+## v1.0.0
+
+* Initial Release
+

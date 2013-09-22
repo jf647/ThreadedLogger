@@ -1,5 +1,7 @@
-require 'test/unit'
+require 'minitest_helper'
+require 'minitest/autorun'
 require 'threadedlogger'
+require 'fakefs'
 
 class ThreadedLogger
     def ThreadedLogger.clear
@@ -10,7 +12,7 @@ class ThreadedLogger
     end
 end
 
-class TestThreadedLogger < Test::Unit::TestCase
+class TestThreadedLogger < Minitest::Test
     def setup
         ThreadedLogger.clear
     end
