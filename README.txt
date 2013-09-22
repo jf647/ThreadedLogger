@@ -13,23 +13,45 @@ to ensure that multiple threads don't step on each other's toes.
 
 ## SYNOPSIS:
 
-```ruby
-require 'threadedlogger'
+    require 'threadedlogger'
 
-log = ThreadedLogger.instance(logfname, 'daily', 'debug')
-log.info('START')
-...
-log.debug('super important stuff')
-...
-log.info("STOP")
-log.shutdown
+    log = ThreadedLogger.instance(logfname, 'daily', 'debug')
+    log.info('START')
+    ...
+    log.debug('super important stuff')
+    ...
+    log.info("STOP")
+    log.shutdown
 
-log2 = ThreadedLogger.instance(logfname, 'daily', 'debug', proc { |l| "prefix: #{l}" })
-```
+or if you have multiple loggers
 
-ThreadedLogger has one and only one instance, accessed via the ::instance
+    require 'threadedlogger'
+
+    class Log1 < ThreadedLogger
+    end
+
+    class Log2 < ThreadedLogger
+    end
+
+    log1 = Log1.instance(logfname1, 'daily', 'debug')
+    log2 = Log2.instance(logfname2, 'daily', 'debug')
+    log1.info('START')
+    ...
+    log1.debug('super important stuff')
+    log2.info('something that only goes to the second log')
+    ...
+    log1.info("STOP")
+    log2.shutdown
+    log1.shutdown
+
+ThreadedLogger can be subclassed if you need to have multiple logs in a
+program.  Each subclass has one logger instance, accessed via the ::instance
 class method.  You can only provide arguments the first time - trying to
 're-construct' the object will throw an ArgumentError.
+
+If you only need one logger, you can just use ThreadedLogger without
+subclassing it.  Instances are stored keyed on class name, and the base
+class is a valid key.
 
 Under the covers, the dedicated thread uses the standard Ruby Logger
 library.  Refer to [Logger](http://www.ruby-doc.org/stdlib-1.9.3/libdoc/logger/rdoc/Logger.html)
@@ -46,8 +68,20 @@ instance method before your program exits.  On a clean shutdown this should
 happen automatically, but if you exit in a funky way it might not capture
 the last message.
 
+The catalog of instances can be cleared using the ::clear and ::clear_all
+class methods.  Each takes an optional boolean argument indicating whether
+::shutdown should be called on any active loggers before clearing them.
+
 This library also overrides Logger.LogDevice.add_log_header to prevent it
 from putting a header line at the top of a logfile when it is first opened.
+
+## CONSTRUCTION THREAD SAFETY
+
+ThreadedLogger does not mutex construction, as the typical use case is for
+the logger to be initialized for the first time outside of threaded code. 
+If you call the constructor for the first time from threaded code, you will
+need to protect ::instance with some kind of synchronization to avoid a race
+condition.
 
 ## LICENSE:
 

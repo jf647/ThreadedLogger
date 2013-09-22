@@ -14,5 +14,5 @@ Rake::TestTask.new("unit_tests") { |t|
     t.libs.push 'test'
     t.pattern = 'test/test_*.rb'
     t.verbose = true
-    t.warning = true
+    t.warning = false
 }
