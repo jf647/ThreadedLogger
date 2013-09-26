@@ -1,5 +1,9 @@
 # History for ThreadedLogger
 
+## v1.2.1
+
+* autogenerate gemspec; the manual one had a syntax error
+
 ## v1.2.0
 
 * Allow multiple loggers to be instantiated as subclasses
