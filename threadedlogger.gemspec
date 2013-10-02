@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name = "threadedlogger"
-  s.version = "1.3.0.20131002091015"
+  s.version = "1.3.0.20131002111917"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["James FitzGibbon"]
@@ -18,13 +18,14 @@ Gem::Specification.new do |s|
   s.rubyforge_project = "threadedlogger"
   s.rubygems_version = "1.8.23"
   s.summary = "ThreadedLogger runs a dedicated logging thread around Ruby's Logger library to ensure that multiple threads don't step on each other's toes."
-  s.test_files = ["test/test_initialized_flag.rb", "test/test_methods.rb", "test/test_clear.rb", "test/test_inheritable.rb", "test/test_logging.rb", "test/test_shutdown.rb", "test/test_threadedlogger.rb"]
+  s.test_files = ["test/test_methods.rb", "test/test_initialized_flag.rb", "test/test_inheritable.rb", "test/test_clear.rb", "test/test_shutdown.rb", "test/test_logging.rb", "test/test_threadedlogger.rb"]
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_development_dependency(%q<rdoc>, ["~> 4.0"])
+      s.add_development_dependency(%q<rake>, ["~> 10.1.0"])
       s.add_development_dependency(%q<hoe>, ["~> 3.7.1"])
       s.add_development_dependency(%q<hoe-gemspec>, ["~> 1.0.0"])
       s.add_development_dependency(%q<hoe-bundler>, ["~> 1.2.0"])
@@ -34,6 +35,7 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<minitest-debugger>, ["~> 1.0.2"])
     else
       s.add_dependency(%q<rdoc>, ["~> 4.0"])
+      s.add_dependency(%q<rake>, ["~> 10.1.0"])
       s.add_dependency(%q<hoe>, ["~> 3.7.1"])
       s.add_dependency(%q<hoe-gemspec>, ["~> 1.0.0"])
       s.add_dependency(%q<hoe-bundler>, ["~> 1.2.0"])
@@ -44,6 +46,7 @@ Gem::Specification.new do |s|
     end
   else
     s.add_dependency(%q<rdoc>, ["~> 4.0"])
+    s.add_dependency(%q<rake>, ["~> 10.1.0"])
     s.add_dependency(%q<hoe>, ["~> 3.7.1"])
     s.add_dependency(%q<hoe-gemspec>, ["~> 1.0.0"])
     s.add_dependency(%q<hoe-bundler>, ["~> 1.2.0"])
