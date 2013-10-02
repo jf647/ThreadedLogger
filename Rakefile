@@ -7,6 +7,7 @@ Hoe.plugin :bundler
 Hoe.spec 'threadedlogger' do
     developer("James FitzGibbon", "james@nadt.net")
     license "MIT"
+    dependency 'rake', '~> 10.1.0', :dev
     dependency 'hoe', '~> 3.7.1', :dev
     dependency 'hoe-gemspec', '~> 1.0.0', :dev
     dependency 'hoe-bundler', '~> 1.2.0', :dev
