@@ -57,9 +57,13 @@ Under the covers, the dedicated thread uses the standard Ruby Logger
 library.  Refer to [Logger](http://www.ruby-doc.org/stdlib-1.9.3/libdoc/logger/rdoc/Logger.html)
 for further detail.
 
-The arguments are: the filename, the rotation period (defaults to 'daily'),
-the loglevel (defaults to 'info') and an optional formatter proc that will
-be used instead of the one that comes with Logger.
+The constructor arguments are: the filename, the rotation period (defaults
+to 'daily'), the loglevel (defaults to 'info') and an optional formatter
+proc that will be used instead of the one that comes with Logger.
+
+The logging instance should be invoked with arguments only once.  Subsequent
+uses of the instance accessor should pass no args.  Attempting to call the
+instance method twice with arguments will raise an ArgumentError.
 
 When you invoke one of the logging methods, the text is enqueued.  The
 background thread constantly pops messages off this queue and logs them.  To
@@ -67,6 +71,13 @@ ensure that all queued messages have been written out, call the .shutdown
 instance method before your program exits.  On a clean shutdown this should
 happen automatically, but if you exit in a funky way it might not capture
 the last message.
+
+You can tell if the logging instance for a class has been initialized by
+calling the class method initialized?
+
+    ThreadedLogger.initialized? # false
+    logger = ThreadedLogger.instance('test/foo.log', 'daily', 'info')
+    ThreadedLogger.initialized? # true
 
 The catalog of instances can be cleared using the ::clear and ::clear_all
 class methods.  Each takes an optional boolean argument indicating whether

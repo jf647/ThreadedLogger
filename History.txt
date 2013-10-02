@@ -1,5 +1,10 @@
 # History for ThreadedLogger
 
+## v1.30
+
+* add a class method initialized? to check if a logging instance for a class
+  has been initialized or not
+
 ## v1.2.1
 
 * autogenerate gemspec; the manual one had a syntax error

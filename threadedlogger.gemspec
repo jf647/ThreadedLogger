@@ -2,15 +2,15 @@
 
 Gem::Specification.new do |s|
   s.name = "threadedlogger"
-  s.version = "1.2.0.20130926085312"
+  s.version = "1.3.0.20131002091309"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["James FitzGibbon"]
-  s.date = "2013-09-26"
+  s.date = "2013-10-02"
   s.description = "ThreadedLogger runs a dedicated logging thread around Ruby's Logger library\nto ensure that multiple threads don't step on each other's toes."
   s.email = ["james@nadt.net"]
   s.extra_rdoc_files = ["History.txt", "Manifest.txt", "README.txt", "LICENSE.txt"]
-  s.files = ["History.txt", "Manifest.txt", "README.txt", "LICENSE.txt", "Rakefile", "lib/threadedlogger.rb", "lib/threadedlogger/core.rb", "lib/threadedlogger/version.rb", "lib/threadedlogger/logger.rb", "test/minitest_helper.rb", "test/test_logging.rb", "test/test_methods.rb", "test/test_threadedlogger.rb", "test/test_shutdown.rb", "test/test_clear.rb", "threadedlogger.gemspec", "test/test_inheritable.rb", ".gemtest"]
+  s.files = ["History.txt", "Manifest.txt", "README.txt", "LICENSE.txt", "Rakefile", "lib/threadedlogger.rb", "lib/threadedlogger/core.rb", "lib/threadedlogger/version.rb", "lib/threadedlogger/logger.rb", "test/minitest_helper.rb", "test/test_logging.rb", "test/test_methods.rb", "test/test_threadedlogger.rb", "test/test_shutdown.rb", "test/test_clear.rb", "test/test_initialized_flag.rb", "threadedlogger.gemspec", "test/test_inheritable.rb", ".gemtest"]
   s.homepage = "https://github.com/jf647/ThreadedLogger"
   s.licenses = ["MIT"]
   s.rdoc_options = ["--main", "README.txt"]
@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.rubyforge_project = "threadedlogger"
   s.rubygems_version = "1.8.23"
   s.summary = "ThreadedLogger runs a dedicated logging thread around Ruby's Logger library to ensure that multiple threads don't step on each other's toes."
-  s.test_files = ["test/test_logging.rb", "test/test_shutdown.rb", "test/test_inheritable.rb", "test/test_clear.rb", "test/test_methods.rb", "test/test_threadedlogger.rb"]
+  s.test_files = ["test/test_initialized_flag.rb", "test/test_methods.rb", "test/test_clear.rb", "test/test_inheritable.rb", "test/test_logging.rb", "test/test_shutdown.rb", "test/test_threadedlogger.rb"]
 
   if s.respond_to? :specification_version then
     s.specification_version = 3

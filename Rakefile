@@ -19,6 +19,8 @@ end
 task :default => [:unit_tests]
 task :package => [ 'gem:spec', 'bundler:gemfile' ]
 
+task :package => [ 'gem:spec', 'bundler:gemfile' ]
+
 desc "Run basic tests"
 Rake::TestTask.new("unit_tests") { |t|
     t.libs.push 'lib'
