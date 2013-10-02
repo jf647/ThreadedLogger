@@ -1,13 +1,15 @@
-require 'simplecov'
-require 'simplecov-console'
+if ENV['CI_BUILD'].nil?
+    require 'simplecov'
+    require 'simplecov-console'
 
-SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
-    SimpleCov::Formatter::HTMLFormatter,
-    SimpleCov::Formatter::Console,
-]
-SimpleCov.start do
-    add_filter '/vendor/'
-    add_filter '/test/'
+    SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
+        SimpleCov::Formatter::HTMLFormatter,
+        SimpleCov::Formatter::Console,
+    ]
+    SimpleCov.start do
+        add_filter '/vendor/'
+        add_filter '/test/'
+    end
 end
 
 require 'minitest/autorun'

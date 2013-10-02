@@ -6,6 +6,7 @@ source "https://rubygems.org/"
 
 
 gem "rdoc", "~>4.0", :group => [:development, :test]
+gem "rake", "~>10.1.0", :group => [:development, :test]
 gem "hoe", "~>3.7.1", :group => [:development, :test]
 gem "hoe-gemspec", "~>1.0.0", :group => [:development, :test]
 gem "hoe-bundler", "~>1.2.0", :group => [:development, :test]
