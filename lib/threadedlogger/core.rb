@@ -27,6 +27,10 @@ class ThreadedLogger
         }
     end
 
+    def self.initialized?
+        ! @@instances[self].nil?
+    end
+
     def self.instance(*args)
         if @@instances[self].nil?
             @@instances[self] = new(*args)

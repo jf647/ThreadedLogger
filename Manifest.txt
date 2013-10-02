@@ -13,4 +13,5 @@ test/test_methods.rb
 test/test_threadedlogger.rb
 test/test_shutdown.rb
 test/test_clear.rb
+test/test_initialized_flag.rb
 threadedlogger.gemspec
