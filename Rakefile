@@ -22,6 +22,7 @@ Hoe.spec 'threadedlogger' do
   dependency 'flog', '~> 4.3.0', :dev
 end
 
+task default: [:unit_tests]
 task package: ['gem:spec', 'bundler:gemfile']
 
 desc 'Generate coverage report'
